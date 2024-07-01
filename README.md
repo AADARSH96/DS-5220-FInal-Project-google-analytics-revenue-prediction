@@ -10,8 +10,7 @@ project_name/ <br/>
 │   └── test.csv<br/> 
 │<br/> 
 ├── notebooks/<br/> 
-│    ├── exploration.ipynb<br/> 
-│    └── model_evaluation.ipynb<br/> 
+│   ├──  iteration3.ipynb<br/> 
 │<br/> 
 ├── src/<br/> 
 │   ├── __init__.py<br/> 
