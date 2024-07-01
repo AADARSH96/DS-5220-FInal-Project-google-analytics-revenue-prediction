@@ -2,6 +2,9 @@
 
 This project aims to predict revenue per customer using the Google Merchandise Store (GStore) dataset. The project involves data loading, preprocessing, feature engineering, model training, and evaluation. The goal is to derive actionable insights and make better use of marketing budgets through data analysis.
 
+PROJECT FLOW
+![Untitled-2024-01-18-1940](https://github.com/AADARSH96/DS-5220-FInal-Project-google-analytics-revenue-prediction/assets/30507087/11b13394-ed6f-4fb8-967c-1fef2a8e0694)
+
 PROJECT STRUCTURE:<br/> 
 project_name/ <br/> 
 │<br/> 
