@@ -5,6 +5,9 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, BaggingRegressor
+from sklearn.svm import SVR
 import pandas as pd
 import numpy as np
 from tabulate import tabulate
@@ -39,13 +42,49 @@ def train_and_evaluate_models(X, y, preprocessor):
         'Ridge Regression': {
             'model': Ridge(),
             'params': {
-                'classifier__alpha': [0.1, 1.0, 10.0]
+                'classifier__alpha': [0.1, 1.0, 10.0]  # Example values for alpha
             }
         },
         'Lasso Regression': {
             'model': Lasso(),
             'params': {
-                'classifier__alpha': [0.1, 1.0, 10.0]
+                'classifier__alpha': [0.1, 1.0, 10.0]  # Example values for alpha
+            }
+        },
+        'Decision Tree': {
+            'model': DecisionTreeRegressor(),
+            'params': {
+                'classifier__max_depth': [3, 5, 7, 10],
+                'classifier__min_samples_split': [2, 5, 10]
+            }
+        },
+        'Random Forest': {
+            'model': RandomForestRegressor(random_state=42),
+            'params': {
+                'classifier__n_estimators': [50, 100, 200],
+                'classifier__max_depth': [3, 5, 7, 10],
+                'classifier__min_samples_split': [2, 5, 10]
+            }
+        },
+        'Gradient Boosting': {
+            'model': GradientBoostingRegressor(random_state=42),
+            'params': {
+                'classifier__n_estimators': [50, 100, 200],
+                'classifier__learning_rate': [0.01, 0.1, 0.2],
+                'classifier__max_depth': [3, 5, 7, 10]
+            }
+        },
+        'Bagging': {
+            'model': BaggingRegressor(random_state=42),
+            'params': {
+                'classifier__n_estimators': [50, 100, 200]
+            }
+        },
+        'Support Vector Machine': {
+            'model': SVR(),
+            'params': {
+                'classifier__kernel': ['linear', 'rbf'],
+                'classifier__C': [0.1, 1, 10]
             }
         }
     }
