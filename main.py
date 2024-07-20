@@ -1,30 +1,33 @@
-from src.preprocessing import load_df
-from src.preprocessing import preprocess_data, transform_target_variable
-from src.vizualization import plot_distributions
-from src.modeling import define_preprocessor, train_and_evaluate_models, print_results
-from src.constants import NUMERICAL_FEATURES, CATEGORICAL_FEATURES, TARGET
+import dask.dataframe as dd
+from src.preprocessing import load_df, preprocess_data, group_features
+from src.modeling import evaluate_models
+from src.vizualization import plot_distributions, plot_trends
+from sklearn.model_selection import train_test_split
+from tabulate import tabulate
+import warnings  # For managing warnings
+warnings.simplefilter(action='ignore')  # Ignore future warnings
+import numpy as np
 
 
-def main():
-    train_csv_path = 'data/train.csv'
-    test_csv_path = 'data/test.csv'
+if __name__ == "__main__":
+    # Load data
+    data_1 = load_df('/Users/aadarsh/study/DS 5220/project/train.csv')
+    data_2 = load_df('/Users/aadarsh/study/DS 5220/project/train_df.csv', json_cols=[])
+    df = dd.concat([data_1, data_2]).drop_duplicates()
+    df = df.compute()
 
-    train_df = load_df(train_csv_path)
-    test_df = load_df(test_csv_path)
+    # run visualization
 
-    train_df, test_df = preprocess_data(train_df, test_df)
-    train_df = transform_target_variable(train_df)
+    df = preprocess_data(df)
+    grouped_df = group_features(df)
+    grouped_df['log_transactionRevenue'] = np.log1p(grouped_df['revenue_sum'])
 
-    plot_distributions(train_df)
+    # Split data into train and validation sets
+    X = grouped_df.drop(columns=['revenue_sum', 'log_transactionRevenue', 'fullVisitorId'])
+    y = grouped_df['log_transactionRevenue']
+    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    X = train_df[NUMERICAL_FEATURES + CATEGORICAL_FEATURES]
-    y = train_df[TARGET]
-
-    preprocessor = define_preprocessor(NUMERICAL_FEATURES, CATEGORICAL_FEATURES)
-    results_df = train_and_evaluate_models(X, y, preprocessor)
-
-    print_results(results_df)
-
-
-if __name__ == '__main__':
-    main()
+    # Evaluate models
+    results = evaluate_models(X_train, X_val, y_train, y_val)
+    print(f"{'*' * 50} Model Scores {'*' * 50}")
+    print(tabulate(results, headers='keys', tablefmt='psql'))

@@ -6,3 +6,7 @@ tqdm~=4.66.2
 matplotlib~=3.8.4
 seaborn~=0.13.2
 dask~=2024.6.2
+xgboost~=2.1.0
+lightgbm~=4.4.0
+catboost~=1.2.5
+imblearn~=0.0
