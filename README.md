@@ -5,7 +5,8 @@ This project aims to predict revenue per customer using the Google Merchandise S
 dataset - https://www.kaggle.com/competitions/ga-customer-revenue-prediction/data
 
 <b>PROJECT FLOW</b>
-![Untitled-2024-01-18-1940](https://github.com/AADARSH96/DS-5220-FInal-Project-google-analytics-revenue-prediction/assets/30507087/11b13394-ed6f-4fb8-967c-1fef2a8e0694)
+<img width="698" alt="Screenshot 2024-07-19 at 8 38 03 PM" src="https://github.com/user-attachments/assets/e19b49ae-411b-4396-b414-68461aaab84b">
+
 
 <b>PROJECT STRUCTURE:</b><br/> 
 project_name/ <br/> 
