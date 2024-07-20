@@ -6,6 +6,9 @@ dataset - https://www.kaggle.com/competitions/ga-customer-revenue-prediction/dat
 
 <b>PROJECT FLOW</b>
 <img width="698" alt="Screenshot 2024-07-19 at 8 38 03 PM" src="https://github.com/user-attachments/assets/e19b49ae-411b-4396-b414-68461aaab84b">
+</br>
+</br>
+
 
 
 <b>PROJECT STRUCTURE:</b><br/> 
